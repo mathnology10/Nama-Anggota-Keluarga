@@ -20,7 +20,7 @@
     }
 
     .app-container {
-      background: linear-gradient(135deg, #FF6B9D 0%, #FFA07A 100%);
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       overflow-y: auto;
       padding: 1.5rem 1rem 1rem 1rem;
     }
@@ -59,18 +59,15 @@
     }
 
     .language-toggle {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+      display: flex;
+      justify-content: center;
       gap: 0.75rem;
       margin-bottom: 1.5rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
     }
 
     .lang-btn {
-      padding: 0.6rem 0.75rem;
-      font-size: 0.85rem;
+      padding: 0.6rem 1.5rem;
+      font-size: 0.95rem;
       font-weight: 600;
       border: 2px solid white;
       border-radius: 25px;
@@ -79,7 +76,6 @@
       cursor: pointer;
       transition: all 0.3s ease;
       backdrop-filter: blur(10px);
-      white-space: nowrap;
     }
 
     .lang-btn:hover {
@@ -90,7 +86,7 @@
 
     .lang-btn.active {
       background: white;
-      color: #FF6B9D;
+      color: #667eea;
     }
 
     .category {
@@ -171,7 +167,7 @@
       right: 10px;
       width: 24px;
       height: 24px;
-      background: #FF6B9D;
+      background: #667eea;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -235,11 +231,6 @@
         font-size: 1.2rem;
         letter-spacing: 2px;
         padding: 0.75rem 1.5rem;
-      }
-
-      .lang-btn {
-        font-size: 0.75rem;
-        padding: 0.5rem 0.5rem;
       }
     }
   </style>
@@ -248,522 +239,6 @@
   <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
  </head>
  <body>
-  <main class="app-container">
-   <div class="content-wrapper">
-    <header class="header">
-     <h1 id="app-title">Learn Family Members</h1>
-     <p id="subtitle-text">Tap to hear the names!</p>
-     <div class="instruction" id="instruction-text">
-      🎧 Choose your language below
-     </div>
-    </header>
-    <div class="language-toggle"><button class="lang-btn active" data-lang="en" id="btn-en">English 🇬🇧</button> <button class="lang-btn" data-lang="id" id="btn-id">Indonesia 🇮🇩</button> <button class="lang-btn" data-lang="ar" id="btn-ar">Arabic 🇸🇦</button> <button class="lang-btn" data-lang="ja" id="btn-ja">Japanese 🇯🇵</button> <button class="lang-btn" data-lang="zh" id="btn-zh">Chinese 🇨🇳</button>
-    </div>
-    <div class="category">
-     <h2 class="category-title">👨‍👩‍👧 Parents / Orang Tua</h2>
-     <div class="emoji-grid" id="parents-grid"></div>
-    </div>
-    <div class="category">
-     <h2 class="category-title">👶 Children / Anak</h2>
-     <div class="emoji-grid" id="children-grid"></div>
-    </div>
-    <div class="category">
-     <h2 class="category-title">🧒 Siblings / Saudara Kandung</h2>
-     <div class="emoji-grid" id="siblings-grid"></div>
-    </div>
-    <div class="category">
-     <h2 class="category-title">😊 Me / Diri Sendiri</h2>
-     <div class="emoji-grid" id="me-grid"></div>
-    </div>
-    <div class="category">
-     <h2 class="category-title">👴👵 Grandparents / Kakek Nenek</h2>
-     <div class="emoji-grid" id="grandparents-grid"></div>
-    </div>
-    <div class="category">
-     <h2 class="category-title">👨👩 Uncle &amp; Aunt / Paman &amp; Bibi</h2>
-     <div class="emoji-grid" id="uncleaunt-grid"></div>
-    </div>
-    <div class="category">
-     <h2 class="category-title">👦👧 Cousins / Sepupu</h2>
-     <div class="emoji-grid" id="cousins-grid"></div>
-    </div>
-    <div class="category">
-     <h2 class="category-title">👦👧 Niece &amp; Nephew / Keponakan</h2>
-     <div class="emoji-grid" id="nephew-grid"></div>
-    </div>
-    <div class="category">
-     <h2 class="category-title">👶 Grandchildren / Cucu</h2>
-     <div class="emoji-grid" id="grandchildren-grid"></div>
-    </div>
-    <div class="category">
-     <h2 class="category-title">👶 Baby / Bayi</h2>
-     <div class="emoji-grid" id="baby-grid"></div>
-    </div>
-    <div class="category">
-     <h2 class="category-title">💑 Spouse / Pasangan</h2>
-     <div class="emoji-grid" id="spouse-grid"></div>
-    </div>
-    <div class="category">
-     <h2 class="category-title">👔 In-laws / Saudara Ipar</h2>
-     <div class="emoji-grid" id="inlaws-grid"></div>
-    </div>
-    <footer class="footer">
-     <div class="footer-text">
-      MATHNOLOGY
-     </div>
-    </footer>
-   </div>
-  </main>
-  <script>
-    const defaultConfig = {
-      app_title: "Learn Family Members",
-      subtitle_text: "Tap to hear the names!",
-      instruction_text: "🎧 Choose your language below",
-      primary_color: "#FF6B9D",
-      secondary_color: "#FFA07A",
-      card_background: "#ffffff",
-      text_color: "#333333",
-      font_family: "Segoe UI"
-    };
-
-    const data = {
-      parents: [
-        { emoji: '👨', en: 'Father', id: 'Ayah', ar: 'أب', ja: '父', zh: '父亲' },
-        { emoji: '👩', en: 'Mother', id: 'Ibu', ar: 'أم', ja: '母', zh: '母亲' }
-      ],
-      children: [
-        { emoji: '👦', en: 'Son', id: 'Anak Laki-laki', ar: 'ابن', ja: '息子', zh: '儿子' },
-        { emoji: '👧', en: 'Daughter', id: 'Anak Perempuan', ar: 'ابنة', ja: '���', zh: '女儿' }
-      ],
-      siblings: [
-        { emoji: '👦', en: 'Older Brother', id: 'Kakak Laki-laki', ar: 'أخ أكبر', ja: '兄', zh: '哥哥' },
-        { emoji: '👧', en: 'Older Sister', id: 'Kakak Perempuan', ar: 'أخت كبرى', ja: '姉', zh: '姐姐' },
-        { emoji: '👶', en: 'Younger Brother', id: 'Adik Laki-laki', ar: 'أخ أصغر', ja: '弟', zh: '弟弟' },
-        { emoji: '👶', en: 'Younger Sister', id: 'Adik Perempuan', ar: 'أخت صغرى', ja: '妹', zh: '妹妹' }
-      ],
-      me: [
-        { emoji: '🧒', en: 'Me', id: 'Aku', ar: 'أنا', ja: '私', zh: '我' }
-      ],
-      grandparents: [
-        { emoji: '👴', en: 'Grandfather', id: 'Kakek', ar: 'جد', ja: '祖父', zh: '爷爷' },
-        { emoji: '👵', en: 'Grandmother', id: 'Nenek', ar: 'جدة', ja: '祖母', zh: '奶奶' }
-      ],
-      uncleaunt: [
-        { emoji: '👨', en: 'Uncle', id: 'Paman', ar: 'عم', ja: '叔父', zh: '叔叔' },
-        { emoji: '👩', en: 'Aunt', id: 'Bibi', ar: 'عمة', ja: '叔母', zh: '阿姨' }
-      ],
-      cousins: [
-        { emoji: '👦', en: 'Male Cousin', id: 'Sepupu Laki-laki', ar: 'ابن عم', ja: 'いとこ (男)', zh: '堂兄弟' },
-        { emoji: '👧', en: 'Female Cousin', id: 'Sepupu Perempuan', ar: 'ابنة عم', ja: 'いとこ (女)', zh: '堂姐妹' }
-      ],
-      nephew: [
-        { emoji: '👦', en: 'Nephew', id: 'Keponakan Laki-laki', ar: 'ابن أخ', ja: '甥', zh: '侄子' },
-        { emoji: '👧', en: 'Niece', id: 'Keponakan Perempuan', ar: 'ابنة أخ', ja: '姪', zh: '侄女' }
-      ],
-      grandchildren: [
-        { emoji: '👦', en: 'Grandson', id: 'Cucu Laki-laki', ar: 'حفيد', ja: '孫 (男)', zh: '孙子' },
-        { emoji: '👧', en: 'Granddaughter', id: 'Cucu Perempuan', ar: 'حفيدة', ja: '孫 (女)', zh: '孙女' }
-      ],
-      baby: [
-        { emoji: '👶', en: 'Baby', id: 'Bayi', ar: 'طفل', ja: '赤ちゃん', zh: '��儿' }
-      ],
-      spouse: [
-        { emoji: '🤵', en: 'Husband', id: 'Suami', ar: 'زوج', ja: '夫', zh: '丈夫' },
-        { emoji: '👰', en: 'Wife', id: 'Istri', ar: 'زوجة', ja: '妻', zh: '妻子' }
-      ],
-      inlaws: [
-        { emoji: '👨', en: 'Brother-in-law', id: 'Ipar Laki-laki', ar: 'صهر', ja: '義兄弟', zh: '姐夫/妹夫' },
-        { emoji: '👩', en: 'Sister-in-law', id: 'Ipar Perempuan', ar: 'سلفة', ja: '義姉妹', zh: '嫂子/弟妹' }
-      ]
-    };
-
-    let currentLang = 'en';
-
-    function speakText(text, lang) {
-      if ('speechSynthesis' in window) {
-        const utterance = new SpeechSynthesisUtterance(text);
-        const langCodes = {
-          'en': 'en-US',
-          'id': 'id-ID',
-          'ar': 'ar-SA',
-          'ja': 'ja-JP',
-          'zh': 'zh-CN'
-        };
-        utterance.lang = langCodes[lang] || 'en-US';
-        utterance.rate = 0.9;
-        utterance.pitch = 1;
-        window.speechSynthesis.cancel();
-        window.speechSynthesis.speak(utterance);
-      }
-    }
-
-    function createEmojiCard(item) {
-      const card = document.createElement('div');
-      card.className = 'emoji-card';
-      
-      const soundIndicator = document.createElement('div');
-      soundIndicator.className = 'sound-indicator';
-      
-      const emoji = document.createElement('span');
-      emoji.className = 'emoji';
-      emoji.textContent = item.emoji;
-      
-      const name = document.createElement('div');
-      name.className = 'emoji-name';
-      name.textContent = item[currentLang];
-      
-      card.appendChild(soundIndicator);
-      card.appendChild(emoji);
-      card.appendChild(name);
-      
-      card.addEventListener('click', () => {
-        const textToSpeak = item[currentLang];
-        speakText(textToSpeak, currentLang);
-        
-        soundIndicator.classList.add('playing');
-        setTimeout(() => {
-          soundIndicator.classList.remove('playing');
-        }, 1500);
-      });
-      
-      return card;
-    }
-
-    function renderCategory(categoryData, containerId) {
-      const container = document.getElementById(containerId);
-      container.innerHTML = '';
-      categoryData.forEach(item => {
-        container.appendChild(createEmojiCard(item));
-      });
-    }
-
-    function renderAll() {
-      renderCategory(data.parents, 'parents-grid');
-      renderCategory(data.children, 'children-grid');
-      renderCategory(data.siblings, 'siblings-grid');
-      renderCategory(data.me, 'me-grid');
-      renderCategory(data.grandparents, 'grandparents-grid');
-      renderCategory(data.uncleaunt, 'uncleaunt-grid');
-      renderCategory(data.cousins, 'cousins-grid');
-      renderCategory(data.nephew, 'nephew-grid');
-      renderCategory(data.grandchildren, 'grandchildren-grid');
-      renderCategory(data.baby, 'baby-grid');
-      renderCategory(data.spouse, 'spouse-grid');
-      renderCategory(data.inlaws, 'inlaws-grid');
-    }
-
-    function updateLanguage(lang) {
-      currentLang = lang;
-      
-      document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.remove('active');
-      });
-      document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
-      
-      renderAll();
-    }
-
-    document.getElementById('btn-en').addEventListener('click', () => updateLanguage('en'));
-    document.getElementById('btn-id').addEventListener('click', () => updateLanguage('id'));
-    document.getElementById('btn-ar').addEventListener('click', () => updateLanguage('ar'));
-    document.getElementById('btn-ja').addEventListener('click', () => updateLanguage('ja'));
-    document.getElementById('btn-zh').addEventListener('click', () => updateLanguage('zh'));
-
-    async function onConfigChange(config) {
-      const titleElement = document.getElementById('app-title');
-      const subtitleElement = document.getElementById('subtitle-text');
-      const instructionElement = document.getElementById('instruction-text');
-      
-      titleElement.textContent = config.app_title || defaultConfig.app_title;
-      subtitleElement.textContent = config.subtitle_text || defaultConfig.subtitle_text;
-      instructionElement.textContent = config.instruction_text || defaultConfig.instruction_text;
-      
-      const primaryColor = config.primary_color || defaultConfig.primary_color;
-      const secondaryColor = config.secondary_color || defaultConfig.secondary_color;
-      const fontFamily = config.font_family || defaultConfig.font_family;
-      
-      document.body.style.fontFamily = `${fontFamily}, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif`;
-      document.querySelector('.app-container').style.background = `linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`;
-    }
-
-    if (window.elementSdk) {
-      window.elementSdk.init({
-        defaultConfig,
-        onConfigChange,
-        mapToCapabilities: (config) => ({
-          recolorables: [
-            {
-              get: () => config.primary_color || defaultConfig.primary_color,
-              set: (value) => {
-                config.primary_color = value;
-                window.elementSdk.setConfig({ primary_color: value });
-              }
-            },
-            {
-              get: () => config.secondary_color || defaultConfig.secondary_color,
-              set: (value) => {
-                config.secondary_color = value;
-                window.elementSdk.setConfig({ secondary_color: value });
-              }
-            }
-          ],
-          borderables: [],
-          fontEditable: {
-            get: () => config.font_family || defaultConfig.font_family,
-            set: (value) => {
-              config.font_family = value;
-              window.elementSdk.setConfig({ font_family: value });
-            }
-          },
-          fontSizeable: undefined
-        }),
-        mapToEditPanelValues: (config) => new Map([
-          ["app_title", config.app_title || defaultConfig.app_title],
-          ["subtitle_text", config.subtitle_text || defaultConfig.subtitle_text],
-          ["instruction_text", config.instruction_text || defaultConfig.instruction_text]
-        ])
-      });
-    }
-
-    renderAll();
-  </script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Family Members Learning</title>
-  <script src="/_sdk/element_sdk.js"></script>
-  <style>
-    body {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      overflow-x: hidden;
-    }
-
-    html, body, .app-container {
-      height: 100%;
-      width: 100%;
-    }
-
-    .app-container {
-      background: linear-gradient(135deg, #FF6B9D 0%, #FFA07A 100%);
-      overflow-y: auto;
-      padding: 1.5rem 1rem 1rem 1rem;
-    }
-
-    .content-wrapper {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .header {
-      text-align: center;
-      margin-bottom: 1.5rem;
-      color: white;
-    }
-
-    .header h1 {
-      font-size: 1.8rem;
-      margin: 0 0 0.5rem 0;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-      line-height: 1.3;
-    }
-
-    .header p {
-      font-size: 1rem;
-      margin: 0 0 0.75rem 0;
-      opacity: 0.95;
-    }
-
-    .instruction {
-      background: rgba(255,255,255,0.2);
-      padding: 0.75rem 1.5rem;
-      border-radius: 25px;
-      display: inline-block;
-      font-size: 0.95rem;
-      backdrop-filter: blur(10px);
-    }
-
-    .language-toggle {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-      gap: 0.75rem;
-      margin-bottom: 1.5rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .lang-btn {
-      padding: 0.6rem 0.75rem;
-      font-size: 0.85rem;
-      font-weight: 600;
-      border: 2px solid white;
-      border-radius: 25px;
-      background: rgba(255,255,255,0.2);
-      color: white;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(10px);
-      white-space: nowrap;
-    }
-
-    .lang-btn:hover {
-      background: rgba(255,255,255,0.3);
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
-
-    .lang-btn.active {
-      background: white;
-      color: #FF6B9D;
-    }
-
-    .category {
-      margin-bottom: 2rem;
-    }
-
-    .category-title {
-      color: white;
-      font-size: 1.4rem;
-      font-weight: 700;
-      margin-bottom: 0.75rem;
-      text-align: center;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-    }
-
-    .emoji-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.75rem;
-      padding: 0.75rem;
-      background: rgba(255,255,255,0.15);
-      border-radius: 15px;
-      backdrop-filter: blur(10px);
-    }
-
-    .emoji-card {
-      background: white;
-      border-radius: 12px;
-      padding: 1rem 0.5rem;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      position: relative;
-      min-height: 100px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .emoji-card:hover {
-      transform: translateY(-3px) scale(1.03);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-    }
-
-    .emoji-card:active {
-      transform: translateY(-1px) scale(1.01);
-    }
-
-    .emoji {
-      font-size: 2.5rem;
-      display: block;
-      margin-bottom: 0.4rem;
-      animation: bounce 0.5s ease;
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    .emoji-card:hover .emoji {
-      animation: bounce 0.5s ease infinite;
-    }
-
-    .emoji-name {
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: #333;
-      margin-top: 0.3rem;
-      line-height: 1.2;
-    }
-
-    .sound-indicator {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      width: 24px;
-      height: 24px;
-      background: #FF6B9D;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .sound-indicator.playing {
-      opacity: 1;
-      animation: pulse 0.5s ease infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-    }
-
-    .sound-indicator::before {
-      content: '🔊';
-      font-size: 0.75rem;
-    }
-
-    .footer {
-      text-align: center;
-      padding: 2rem 1rem 1.5rem 1rem;
-      margin-top: 2rem;
-    }
-
-    .footer-text {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: white;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-      letter-spacing: 3px;
-      background: rgba(255,255,255,0.15);
-      padding: 1rem 2rem;
-      border-radius: 15px;
-      backdrop-filter: blur(10px);
-      display: inline-block;
-    }
-
-    @media (max-width: 768px) {
-      .header h1 {
-        font-size: 1.6rem;
-      }
-      
-      .emoji-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .emoji {
-        font-size: 2.2rem;
-      }
-
-      .emoji-name {
-        font-size: 0.7rem;
-      }
-
-      .footer-text {
-        font-size: 1.2rem;
-        letter-spacing: 2px;
-        padding: 0.75rem 1.5rem;
-      }
-    }
-  </style>
   <main class="app-container">
    <div class="content-wrapper">
     <header class="header">
@@ -835,8 +310,8 @@
       app_title: "Learn Family Members",
       subtitle_text: "Tap to hear the names!",
       instruction_text: "🎧 Choose your language below",
-      primary_color: "#FF6B9D",
-      secondary_color: "#FFA07A",
+      primary_color: "#667eea",
+      secondary_color: "#764ba2",
       card_background: "#ffffff",
       text_color: "#333333",
       font_family: "Segoe UI"
@@ -858,7 +333,7 @@
         { emoji: '👶', en: 'Younger Sister', id: 'Adik Perempuan' }
       ],
       me: [
-        { emoji: '��', en: 'Me', id: 'Aku' }
+        { emoji: '🧒', en: 'Me', id: 'Aku' }
       ],
       grandparents: [
         { emoji: '👴', en: 'Grandfather', id: 'Kakek' },
@@ -898,14 +373,7 @@
     function speakText(text, lang) {
       if ('speechSynthesis' in window) {
         const utterance = new SpeechSynthesisUtterance(text);
-        const langCodes = {
-          'en': 'en-US',
-          'id': 'id-ID',
-          'ar': 'ar-SA',
-          'ja': 'ja-JP',
-          'zh': 'zh-CN'
-        };
-        utterance.lang = langCodes[lang] || 'en-US';
+        utterance.lang = lang === 'en' ? 'en-US' : 'id-ID';
         utterance.rate = 0.9;
         utterance.pitch = 1;
         window.speechSynthesis.cancel();
@@ -926,14 +394,14 @@
       
       const name = document.createElement('div');
       name.className = 'emoji-name';
-      name.textContent = item[currentLang];
+      name.textContent = currentLang === 'en' ? item.en : item.id;
       
       card.appendChild(soundIndicator);
       card.appendChild(emoji);
       card.appendChild(name);
       
       card.addEventListener('click', () => {
-        const textToSpeak = item[currentLang];
+        const textToSpeak = currentLang === 'en' ? item.en : item.id;
         speakText(textToSpeak, currentLang);
         
         soundIndicator.classList.add('playing');
@@ -981,9 +449,6 @@
 
     document.getElementById('btn-en').addEventListener('click', () => updateLanguage('en'));
     document.getElementById('btn-id').addEventListener('click', () => updateLanguage('id'));
-    document.getElementById('btn-ar').addEventListener('click', () => updateLanguage('ar'));
-    document.getElementById('btn-ja').addEventListener('click', () => updateLanguage('ja'));
-    document.getElementById('btn-zh').addEventListener('click', () => updateLanguage('zh'));
 
     async function onConfigChange(config) {
       const titleElement = document.getElementById('app-title');
@@ -1043,5 +508,5 @@
 
     renderAll();
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9af37b8fb054fd97',t:'MTc2NTk0MzcwMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9af3feca23cf8813',t:'MTc2NTk0OTA3OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
